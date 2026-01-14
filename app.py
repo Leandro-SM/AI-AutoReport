@@ -70,6 +70,17 @@ def generate_google_dorks(term):
     }
 
 
+def dms_to_decimal(dms, ref):
+    """Converte DMS (graus, minutos, segundos) em decimal"""
+    degrees = float(dms[0].num) / float(dms[0].den)
+    minutes = float(dms[1].num) / float(dms[1].den)
+    seconds = float(dms[2].num) / float(dms[2].den)
+
+    decimal = degrees + (minutes / 60.0) + (seconds / 3600.0)
+    if ref in ['S', 'W']:
+        decimal = -decimal
+    return decimal
+
 def extract_metadata(uploaded_file):
     metadata = {
         "Nome do Arquivo": uploaded_file.name,
@@ -88,13 +99,36 @@ def extract_metadata(uploaded_file):
 
             uploaded_file.seek(0)
             exif_tags = exifread.process_file(uploaded_file, details=False)
-            metadata["EXIF"] = {str(k): str(v) for k, v in exif_tags.items()}
+
+            # Informações principais
+            metadata["EXIF"] = {}
+            metadata["Dispositivo"] = exif_tags.get("Image Make", "Desconhecido")
+            metadata["Modelo"] = exif_tags.get("Image Model", "Desconhecido")
+            metadata["Data da Captura"] = exif_tags.get("EXIF DateTimeOriginal", "Desconhecido")
+
+            # Localização GPS
+            gps_latitude = exif_tags.get("GPS GPSLatitude")
+            gps_latitude_ref = exif_tags.get("GPS GPSLatitudeRef")
+            gps_longitude = exif_tags.get("GPS GPSLongitude")
+            gps_longitude_ref = exif_tags.get("GPS GPSLongitudeRef")
+
+            if gps_latitude and gps_latitude_ref and gps_longitude and gps_longitude_ref:
+                try:
+                    lat = dms_to_decimal(gps_latitude.values, gps_latitude_ref.values)
+                    lon = dms_to_decimal(gps_longitude.values, gps_longitude_ref.values)
+                    metadata["GPS"] = {"Latitude": lat, "Longitude": lon}
+                except:
+                    metadata["GPS"] = "Erro ao processar GPS"
+            else:
+                metadata["GPS"] = "Não disponível"
+
+            # Guardar EXIF completo como fallback
+            metadata["EXIF"]["completo"] = {str(k): str(v) for k, v in exif_tags.items()}
 
     except Exception as e:
         metadata["Erro"] = str(e)
 
     return metadata
-
 
 def calculate_hashes(uploaded_file):
     uploaded_file.seek(0)
@@ -212,3 +246,9 @@ with tab2:
                     f"[Casa dos Dados](https://casadosdados.com.br/solucao/cnpj?q={cnpj})",
                     unsafe_allow_html=True
                 )
+
+with tab3:
+    st.header("📄 Relatórios")
+    st.info("Exportação PDF, IA interpretativa e correlação OSINT em desenvolvimento.")
+
+
