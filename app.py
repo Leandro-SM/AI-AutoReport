@@ -140,7 +140,7 @@ with tab1:
         with col1:
             st.markdown("### Metadata")
             metadata = extract_metadata(uploaded_file)
-            st.json(metadata, expanded=False)
+            st.json(metadata, expanded=True)
 
         with col2:
             st.markdown("### Hashes")
