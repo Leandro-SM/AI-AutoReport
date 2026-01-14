@@ -112,5 +112,5 @@ if uploaded_file:
 
     if st.button("Gerar Relatório PDF"):
         report = generate_report(metadata, hashes)
-        st.subheader("Report:")
+        st.subheader("Relatório:")
         st.text_area("", report, height=500)
