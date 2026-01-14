@@ -88,15 +88,15 @@ st.set_page_config(
 )
 
 st.title("AI-AutoReport")
-st.caption("Automated Forensic Report Generator")
+st.caption("Ferramenta automatizada para análise Forense de arquivos e geração de Relatórios Técnicos.")
 
 uploaded_file = st.file_uploader(
-    "Upload a file for forensic analysis",
+    "Envie um arquivo para análise.",
     type=["jpg", "jpeg", "png", "pdf", "txt"]
 )
 
 if uploaded_file:
-    st.success("File uploaded successfully")
+    st.success("Arquivo enviado com sucesso! ✅")
 
     col1, col2 = st.columns(2)
 
