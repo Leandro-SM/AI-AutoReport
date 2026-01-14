@@ -4,6 +4,31 @@ import exifread
 import hashlib
 from io import BytesIO
 
+def generate_google_dorks(term):
+    dorks = {
+        "Arquivos Sensíveis": [
+            f'site:{term} filetype:pdf',
+            f'site:{term} filetype:xls',
+            f'site:{term} filetype:doc'
+        ],
+        "Diretórios Expostos": [
+            f'site:{term} intitle:"index of"',
+            f'site:{term} intitle:"parent directory"'
+        ],
+        "Credenciais e Vazamentos": [
+            f'"{term}" password',
+            f'"{term}" credentials',
+            f'"{term}" leaked'
+        ],
+        "Tecnologia / Infra": [
+            f'site:{term} inurl:admin',
+            f'site:{term} inurl:login'
+        ]
+    }
+
+    return dorks
+
+
 def extract_metadata(uploaded_file):
     metadata = {}
 
@@ -116,4 +141,21 @@ if uploaded_file:
         st.text_area("", report, height=500)
 
 st.title("Busca - Google Dorks")
-st.caption("Encontrar resultados na Web.")
+st.caption("Geração de Google Dorks.")
+
+search_term = st.text_input(
+    "Informe o termo base para investigação (domínio, email, nome, hash, etc.)",
+    placeholder="ex: example.com ou john.doe@email.com"
+)
+
+if search_term:
+    st.subheader("Google Dorks Gerados")
+
+    dorks = generate_google_dorks(search_term)
+
+    for category, queries in dorks.items():
+        with st.expander(category):
+            for q in queries:
+                google_url = f"https://www.google.com/search?q={q}"
+                st.markdown(f"- [{q}]({google_url})")
+
