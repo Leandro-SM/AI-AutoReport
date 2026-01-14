@@ -151,7 +151,7 @@ with tab1:
         st.info("Envie um arquivo para iniciar a análise forense.")
 
 with tab2:
-    st.subheader("OSINT – Google Dorks")
+    st.subheader("Busca - Google Dorks")
 
     search_term = st.text_input(
         "Termo de busca",
@@ -167,7 +167,7 @@ with tab2:
                     st.markdown(f"- [{q}]({google_search_url(q)})")
 
     st.divider()
-    st.subheader("OSINT – Insecam")
+    st.subheader("Câmeras")
 
     selected_country = st.selectbox(
         "Selecione o país",
