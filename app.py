@@ -172,7 +172,7 @@ with st.container():
     if uploaded_file:
         st.success("Arquivo carregado com sucesso")
         st.caption(
-            f"Arquivo: {uploaded_file.name} • {uploaded_file.size} bytes"
+            f"Arquivo: {uploaded_file.Nome do Arquivo} • {uploaded_file.Tamanho do Arquivo} bytes"
         )
     col1, col2 = st.columns(2)
 
