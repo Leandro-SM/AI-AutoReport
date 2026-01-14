@@ -62,13 +62,13 @@ def generate_report(metadata, hashes):
 
     report.append("[Metadata]")
     for k, v in metadata.items():
-        if k == "exif":
-            report.append("EXIF Data:")
+        if k == "exifTool":
+            report.append("Dados EXIF:")
             if v:
                 for exif_k, exif_v in v.items():
                     report.append(f"  - {exif_k}: {exif_v}")
             else:
-                report.append("  No EXIF data found")
+                report.append("  Nenhum dado EXIF encontrado.")
         elif k not in ["Nome do Arquivo", "Tipo do Arquivo", "Tamanho do Arquivo"]:
             report.append(f"{k}: {v}")
 
