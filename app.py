@@ -87,7 +87,7 @@ st.set_page_config(
     layout="wide"
 )
 
-st.title("AI-AutoReport")
+st.title("Análise de Metadados")
 st.caption("Ferramenta automatizada para análise Forense de arquivos e geração de Relatórios Técnicos.")
 
 uploaded_file = st.file_uploader(
@@ -114,3 +114,6 @@ if uploaded_file:
         report = generate_report(metadata, hashes)
         st.subheader("Relatório:")
         st.text_area("", report, height=500)
+
+st.title("Busca - Google Dorks")
+st.caption("Encontrar resultados na Web.")
