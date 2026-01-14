@@ -198,21 +198,16 @@ with tab2:
         if len(cnpj) != 14:
             st.error("CNPJ inválido. Informe 14 dígitos.")
         else:
-            col1, col2, col3 = st.columns(3)
-
-            with col1:
                 st.markdown(
                     f"[CadastroEmpresa](https://cadastroempresa.com.br/procura?q={cnpj})",
                     unsafe_allow_html=True
                 )
 
-            with col2:
                 st.markdown(
                     f"[BrasilCNPJ](https://brasilcnpj.net/cnpj/{cnpj})",
                     unsafe_allow_html=True
                 )
 
-            with col3:
                 st.markdown(
                     f"[Casa dos Dados](https://casadosdados.com.br/solucao/cnpj?q={cnpj})",
                     unsafe_allow_html=True
