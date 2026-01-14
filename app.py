@@ -150,21 +150,30 @@ def generate_report(metadata, hashes):
 
 
 st.set_page_config(
-    page_title="OSINT-AutoReport",
+    page_title="OSINT-Framework",
+    page_icon="🕵️",
     layout="wide"
 )
 
+st.markdown("## 🕵️ OSINT Tools e AI Automated Report")
+st.caption("https://www.linkedin.com/in/leandro-medeiros-ti/")
+st.divider()
+
 st.title("Análise de Metadados")
-st.caption("Ferramenta automatizada para análise Forense de arquivos e geração de Relatórios Técnicos.")
+st.caption("Ferramenta automatizada para análise de Metadados.")
+with st.container():
+    st.subheader("📁 Upload de Arquivo")
 
-uploaded_file = st.file_uploader(
-    "Envie um arquivo para análise de Metadados.",
-    type=["jpg", "jpeg", "png", "pdf", "txt"]
-)
+    uploaded_file = st.file_uploader(
+        "Envie um arquivo para análise forense",
+        type=["jpg", "jpeg", "png", "pdf", "txt"]
+    )
 
-if uploaded_file:
-    st.success("Arquivo enviado com sucesso! ✅")
-
+    if uploaded_file:
+        st.success("Arquivo carregado com sucesso")
+        st.caption(
+            f"Arquivo: {uploaded_file.name} • {uploaded_file.size} bytes"
+        )
     col1, col2 = st.columns(2)
 
     with col1:
@@ -201,7 +210,7 @@ if search_term:
                 url = google_search_url(q)
                 st.markdown(f"- [{q}]({url})", unsafe_allow_html=True)
 
-st.title("OSINT - Insecam")
+st.title("Câmeras")
 st.caption("Cameras indexadas publicamente.")
 
 selected_country = st.selectbox(
