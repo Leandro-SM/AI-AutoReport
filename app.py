@@ -249,6 +249,6 @@ with tab2:
 
 with tab3:
     st.header("📄 Relatórios")
-    st.info("Exportação PDF, IA interpretativa e correlação OSINT em desenvolvimento.")
+    st.info("[Em Desenvolvimento] Exportação PDF, Geração de Relatórios com IA.")
 
 
