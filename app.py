@@ -5,7 +5,7 @@ import hashlib
 import urllib.parse
 
 st.set_page_config(
-    page_title="AI-AutoReport",
+    page_title="OSINT Framework",
     page_icon="🕵️",
     layout="wide"
 )
