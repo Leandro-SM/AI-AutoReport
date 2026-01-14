@@ -91,7 +91,7 @@ st.title("AI-AutoReport")
 st.caption("Ferramenta automatizada para análise Forense de arquivos e geração de Relatórios Técnicos.")
 
 uploaded_file = st.file_uploader(
-    "Envie um arquivo para análise.",
+    "Envie um arquivo para análise de Metadados.",
     type=["jpg", "jpeg", "png", "pdf", "txt"]
 )
 
