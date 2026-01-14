@@ -27,6 +27,10 @@ INSECAM_COUNTRIES = {
     "Russia - RU": "ru"
 }
 
+
+def sanitize_cnpj(cnpj):
+    return "".join(filter(str.isdigit, cnpj))
+
 def google_search_url(query):
     return f"https://www.google.com/search?q={urllib.parse.quote(query)}"
 
@@ -179,3 +183,37 @@ with tab2:
         st.markdown(
             f"🔗 [Acessar Insecam – {selected_country}](http://www.insecam.org/en/bycountry/{code}/)"
         )
+
+    st.divider()
+    st.subheader("Busca por CNPJ")
+
+    cnpj_input = st.text_input(
+        "Informe o CNPJ",
+        placeholder="00.000.000/0000-00"
+    )
+
+    if cnpj_input:
+        cnpj = sanitize_cnpj(cnpj_input)
+
+        if len(cnpj) != 14:
+            st.error("CNPJ inválido. Informe 14 dígitos.")
+        else:
+            col1, col2, col3 = st.columns(3)
+
+            with col1:
+                st.markdown(
+                    f"[CadastroEmpresa](https://cadastroempresa.com.br/procura?q={cnpj})",
+                    unsafe_allow_html=True
+                )
+
+            with col2:
+                st.markdown(
+                    f"[BrasilCNPJ](https://brasilcnpj.net/cnpj/{cnpj})",
+                    unsafe_allow_html=True
+                )
+
+            with col3:
+                st.markdown(
+                    f"[Casa dos Dados](https://casadosdados.com.br/solucao/cnpj?q={cnpj})",
+                    unsafe_allow_html=True
+                )
