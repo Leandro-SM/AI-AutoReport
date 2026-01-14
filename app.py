@@ -154,6 +154,13 @@ st.set_page_config(
     layout="wide"
 )
 
+tab1, tab2, tab3 = st.tabs([
+    "🔬 Forensic Analysis",
+    "🌐 OSINT",
+    "📄 Relatório"
+])
+
+
 st.title("Análise de Metadados")
 st.caption("Ferramenta automatizada para análise Forense de arquivos e geração de Relatórios Técnicos.")
 
