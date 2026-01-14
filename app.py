@@ -3,6 +3,11 @@ from PIL import Image
 import exifread
 import hashlib
 from io import BytesIO
+import urllib.parse
+
+def google_search_url(query):
+    encoded_query = urllib.parse.quote(query)
+    return f"https://www.google.com/search?q={encoded_query}"
 
 def generate_google_dorks(term):
     dorks = {
@@ -144,8 +149,8 @@ st.title("Busca - Google Dorks")
 st.caption("Geração de Google Dorks.")
 
 search_term = st.text_input(
-    "Informe o termo base para investigação (domínio, email, nome, hash, etc.)",
-    placeholder="ex: example.com ou john.doe@email.com"
+    "Informe o termo para ser pesquisado.",
+    placeholder='ex: Alexandre de Moraes, gov.com, lula@brasil.com'
 )
 
 if search_term:
