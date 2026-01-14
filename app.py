@@ -5,6 +5,18 @@ import hashlib
 from io import BytesIO
 import urllib.parse
 
+INSECAM_COUNTRIES = {
+    "Brazil - BR": "br",
+    "Canada - CA": "ca",
+    "United States - US": "us",
+    "Germany - DE": "de",
+    "France - FR": "fr",
+    "Italy - IT": "it",
+    "Spain - ES": "es",
+    "Japan - JP": "jp",
+    "Russia - RU": "ru"
+}
+
 def google_search_url(query):
     encoded_query = urllib.parse.quote(query)
     return f"https://www.google.com/search?q={encoded_query}"
@@ -188,3 +200,21 @@ if search_term:
             for q in queries:
                 url = google_search_url(q)
                 st.markdown(f"- [{q}]({url})", unsafe_allow_html=True)
+
+st.title("OSINT - Insecam")
+st.caption("Cameras indexadas publicamente.")
+
+selected_country = st.selectbox(
+    "Selecione o país",
+    options=list(INSECAM_COUNTRIES.keys())
+)
+
+if selected_country:
+    country_code = INSECAM_COUNTRIES[selected_country]
+    insecam_url = f"http://www.insecam.org/en/bycountry/{country_code}/"
+
+    st.markdown(
+        f"🔗 [Acessar Insecam - {selected_country}]({insecam_url})",
+        unsafe_allow_html=True
+    )
+
