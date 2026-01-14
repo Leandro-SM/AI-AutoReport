@@ -151,7 +151,7 @@ st.caption("Geração de Google Dorks.")
 
 search_term = st.text_input(
     "Informe o termo para ser pesquisado.",
-    placeholder='ex: Alexandre de Moraes, gov.com, lula@brasil.com'
+    placeholder='ex: Nome, Tel, E-mail.'
 )
 
 if search_term:
