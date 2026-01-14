@@ -83,7 +83,7 @@ def generate_report(metadata, hashes):
 
 
 st.set_page_config(
-    page_title="AI-AutoReport",
+    page_title="OSINT-AutoReport",
     layout="wide"
 )
 
