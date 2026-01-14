@@ -8,17 +8,17 @@ def extract_metadata(uploaded_file):
     metadata = {}
 
     try:
-        metadata["filename"] = uploaded_file.name
-        metadata["content_type"] = uploaded_file.type
-        metadata["size_bytes"] = uploaded_file.size
+        metadata["Nome do Arquivo"] = uploaded_file.name
+        metadata["Tipo do Arquivo"] = uploaded_file.type
+        metadata["Tamanho do Arquivo (Bytes)"] = uploaded_file.size
 
         if uploaded_file.type.startswith("image"):
             uploaded_file.seek(0)
             image = Image.open(uploaded_file)
 
-            metadata["image_format"] = image.format
-            metadata["image_mode"] = image.mode
-            metadata["image_size"] = image.size
+            metadata["Formato/Extensão"] = image.format
+            metadata["Modo"] = image.mode
+            metadata["Tamanho da Imagem"] = image.size
 
             uploaded_file.seek(0)
             exif_tags = exifread.process_file(uploaded_file, details=False)
@@ -48,14 +48,14 @@ def calculate_hashes(uploaded_file):
 
 def generate_report(metadata, hashes):
     report = []
-    report.append("=== AI-AutoReport | Forensic Analysis ===\n")
+    report.append("=== AI-AutoReport | Análise Forense ===\n")
 
     report.append("[File Information]")
-    report.append(f"Filename: {metadata.get('filename')}")
-    report.append(f"Content-Type: {metadata.get('content_type')}")
-    report.append(f"Size (bytes): {metadata.get('size_bytes')}\n")
+    report.append(f"Nome do Arquivo: {metadata.get('Nome do Arquivo')}")
+    report.append(f"Tipo do Arquivo: {metadata.get('Tipo do Arquivo')}")
+    report.append(f"Tamanho (bytes): {metadata.get('Tamanho do Arquivo (Bytes)')}\n")
 
-    report.append("[Cryptographic Hashes]")
+    report.append("[Hashes]")
     for k, v in hashes.items():
         report.append(f"{k}: {v}")
     report.append("")
@@ -69,13 +69,13 @@ def generate_report(metadata, hashes):
                     report.append(f"  - {exif_k}: {exif_v}")
             else:
                 report.append("  No EXIF data found")
-        elif k not in ["filename", "content_type", "size_bytes"]:
+        elif k not in ["Nome do Arquivo", "Tipo do Arquivo", "Tamanho do Arquivo"]:
             report.append(f"{k}: {v}")
 
-    report.append("\n[Conclusion]")
+    report.append("\n[Resumo]")
     report.append(
-        "This report was generated automatically and contains raw forensic data. "
-        "Interpretation and legal validation should be performed by a qualified analyst."
+        "Esse relatório foi gerado automaticamente utilizando EXIFTOOL, PIL e HashLib. "
+        "Uso jurídico e validação legal deve ser feita mediante a aprovação de um profissional qualificado."
     )
 
     return "\n".join(report)
