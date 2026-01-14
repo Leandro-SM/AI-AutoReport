@@ -10,8 +10,9 @@ st.set_page_config(
     layout="wide"
 )
 
-st.markdown("## 🕵️ AI-AutoReport")
-st.caption("Automated Forensic & OSINT Analysis Tool")
+st.markdown("## 🕵️ OSINT Framework")
+st.caption("Ferramentas de Análise e Dorking")
+st.caption("https://www.linkedin.com/in/leandro-medeiros-ti/")
 st.divider()
 
 INSECAM_COUNTRIES = {
