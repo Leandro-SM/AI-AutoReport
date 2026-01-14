@@ -52,6 +52,7 @@ def generate_google_dorks(term):
             f'site:github.com {quoted_term}',
             f'site:linkedin.com {quoted_term}',
             f'site:reddit.com {quoted_term}',
+            f'site:tiktok.com {quoted_term}'
         ]
     }
 
