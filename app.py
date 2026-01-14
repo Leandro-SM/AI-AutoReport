@@ -101,7 +101,7 @@ if uploaded_file:
     col1, col2 = st.columns(2)
 
     with col1:
-        st.subheader("Metadata Preview")
+        st.subheader("Metadata")
         metadata = extract_metadata(uploaded_file)
         st.json(metadata)
 
@@ -110,7 +110,7 @@ if uploaded_file:
         hashes = calculate_hashes(uploaded_file)
         st.json(hashes)
 
-    if st.button("Generate Forensic Report"):
+    if st.button("Gerar Relatório PDF"):
         report = generate_report(metadata, hashes)
-        st.subheader("Forensic Report")
+        st.subheader("Report:")
         st.text_area("", report, height=500)
