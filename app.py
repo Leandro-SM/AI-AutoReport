@@ -10,24 +10,25 @@ def google_search_url(query):
     return f"https://www.google.com/search?q={encoded_query}"
 
 def generate_google_dorks(term):
+    quoted_term = f'"{term}"'
+    site_term = f"site:{term}"
+
     dorks = {
-        "Arquivos Sensíveis": [
-            f'site:{term} filetype:pdf',
-            f'site:{term} filetype:xls',
-            f'site:{term} filetype:doc'
+        "Menções Diretas (Texto)": [
+            quoted_term,
+            f'{quoted_term} password',
+            f'{quoted_term} credentials',
+            f'{quoted_term} leaked'
         ],
-        "Diretórios Expostos": [
-            f'site:{term} intitle:"index of"',
-            f'site:{term} intitle:"parent directory"'
+        "Arquivos Relacionados": [
+            f'{quoted_term} filetype:pdf',
+            f'{quoted_term} filetype:xls',
+            f'{quoted_term} filetype:doc'
         ],
-        "Credenciais e Vazamentos": [
-            f'"{term}" password',
-            f'"{term}" credentials',
-            f'"{term}" leaked'
-        ],
-        "Tecnologia / Infra": [
-            f'site:{term} inurl:admin',
-            f'site:{term} inurl:login'
+        "Infraestrutura / Admin (site:)": [
+            f'{site_term} inurl:admin',
+            f'{site_term} inurl:login',
+            f'{site_term} intitle:"index of"'
         ]
     }
 
@@ -161,6 +162,5 @@ if search_term:
     for category, queries in dorks.items():
         with st.expander(category):
             for q in queries:
-                google_url = f"https://www.google.com/search?q={q}"
-                st.markdown(f"- [{q}]({google_url})")
-
+                url = google_search_url(q)
+                st.markdown(f"- [{q}]({url})", unsafe_allow_html=True)
