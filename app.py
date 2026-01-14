@@ -17,18 +17,41 @@ def generate_google_dorks(term):
         "Menções Diretas (Texto)": [
             quoted_term,
             f'{quoted_term} password',
+            f'{quoted_term} senha',
             f'{quoted_term} credentials',
-            f'{quoted_term} leaked'
+            f'{quoted_term} user',
+            f'{quoted_term} leaked',
+            f'{quoted_term} cpf',
+            f'{quoted_term} e-mail',
+            f'{quoted_term} name'
         ],
         "Arquivos Relacionados": [
             f'{quoted_term} filetype:pdf',
             f'{quoted_term} filetype:xls',
-            f'{quoted_term} filetype:doc'
+            f'{quoted_term} filetype:doc',
+            f'{quoted_term} filetype:xlsx',
+            f'{quoted_term} filetype:docx',
+            f'{quoted_term} filetype:php',
+            f'{quoted_term} filetype:txt'
         ],
-        "Infraestrutura / Admin (site:)": [
+        "inUrl (site:)": [
             f'{site_term} inurl:admin',
             f'{site_term} inurl:login',
+            f'{site_term} inurl:password',
+            f'{site_term} inurl:cpf',
+            f'{site_term} inurl:user',
+            f'{site_term} inurl:wp-admin',
             f'{site_term} intitle:"index of"'
+        ],
+        "Redes Sociais": [
+            f'site:instagram.com {quoted_term}',
+            f'site:x.com {quoted_term}',
+            f'site:facebook.com {quoted_term}',
+            f'site:youtube.com {quoted_term}',
+            f'site:deviantart.com {quoted_term}',
+            f'site:github.com {quoted_term}',
+            f'site:linkedin.com {quoted_term}',
+            f'site:reddit.com {quoted_term}',
         ]
     }
 
