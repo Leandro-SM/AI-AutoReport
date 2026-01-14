@@ -137,7 +137,7 @@ tab1, tab2, tab3 = st.tabs([
 ])
 
 with tab1:
-    st.subheader("Análise Forense")
+    st.subheader("Metadados")
 
     if uploaded_file:
         col1, col2 = st.columns(2)
@@ -152,7 +152,7 @@ with tab1:
             hashes = calculate_hashes(uploaded_file)
             st.json(hashes)
     else:
-        st.info("Envie um arquivo para iniciar a análise forense.")
+        st.info("Envie um arquivo para iniciar a análise")
 
 with tab2:
     st.subheader("Busca - Google Dorks")
